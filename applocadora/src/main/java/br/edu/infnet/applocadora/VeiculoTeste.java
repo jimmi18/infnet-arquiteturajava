@@ -1,29 +1,29 @@
 package br.edu.infnet.applocadora;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.applocadora.model.domain.Aviao;
 import br.edu.infnet.applocadora.model.domain.Caminhao;
 import br.edu.infnet.applocadora.model.domain.Carro;
-//import br.edu.infnet.applocadora.model.domain.Veiculo;
-//import org.springframework.core.annotation.Order;
+import br.edu.infnet.applocadora.model.service.VeiculoService;
 
-//import br.edu.infnet.applocadora.model.domain.Aviao;
-//import br.edu.infnet.applocadora.model.domain.Carro;
-//import br.edu.infnet.applocadora.model.domain.Caminhao;
-
-//import br.edu.infnet.applocadora.model.domain.Veiculo;
-
+@Order(3)
 @Component
 public class VeiculoTeste implements ApplicationRunner {
+	
+	@Autowired
+	private VeiculoService veiculoService;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("## Cadastramento de Veiculos ##");
 		
 		Aviao aviao = new Aviao();
+		aviao.setId(1);
 		aviao.setPeso(5000.80f);
 		aviao.setCor("azul");
 		aviao.setMarca("embraer");
@@ -31,9 +31,10 @@ public class VeiculoTeste implements ApplicationRunner {
 		aviao.setTipoMotor("motor a pistão");
 		aviao.setCombustivel("gasolina de aviação");
 		aviao.setQtdPessoas(4);
-		System.out.println("Aviao - " + aviao);
+		veiculoService.incluir(aviao);
 		
 		Carro carro = new Carro();
+		carro.setId(2);
 		carro.setPeso(1900.90);
 		carro.setCor("preto");
 		carro.setMarca("toyota");
@@ -41,9 +42,10 @@ public class VeiculoTeste implements ApplicationRunner {
 		carro.setPlaca("RLV-1228");
 		carro.setModelo("Gol");
 		carro.setCambio('A');
-		System.out.println("Carro - " + carro);
+		veiculoService.incluir(carro);
 		
 		Caminhao caminhao = new Caminhao();
+		caminhao.setId(3);
 		caminhao.setPeso(10000.80);
 		caminhao.setCor("amarelo");
 		caminhao.setMarca("mercedes");
@@ -51,6 +53,6 @@ public class VeiculoTeste implements ApplicationRunner {
 		caminhao.setTipoCaminhao("Rodotrem");
 		caminhao.setCapacidadeCarga(74000);
 		caminhao.setQtdEixos(9);
-		System.out.println("Caminhão - " + caminhao);
+		veiculoService.incluir(caminhao);
 	}
 }

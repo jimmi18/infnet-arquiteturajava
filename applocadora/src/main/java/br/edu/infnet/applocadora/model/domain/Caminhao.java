@@ -1,5 +1,10 @@
 package br.edu.infnet.applocadora.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tcaminhao")
 public class Caminhao extends Veiculo {
 	
 	private String tipoCaminhao;
